@@ -1,0 +1,19 @@
+# Temporary files
+*.swp
+*.swo
+*.bak
+*.old
+*.tmp
+
+# Session files
+Session.vim
+
+# Lazy plugin manager
+lazy-lock.json
+# Directory where Lazy installs plugins (adjust if different)
+plugged/
+bundle/
+
+# OS or Editor specific files
+.DS_Store
+Thumbs.db
