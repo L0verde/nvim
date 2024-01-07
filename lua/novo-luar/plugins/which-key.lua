@@ -54,10 +54,10 @@ return {
       t = {
         name = 'Trouble',
         t = {function() trouble.toggle() end, 'Toggle'},
-        n = {function() trouble.next({skip_groups = true, jump = true}) end, 'Next'},
-        p = {function() trouble.previous({skip_groups = true, jump = true}) end, 'Prev'},
+        n = {function() trouble.next({skip_groups = true, jump = true}) end, 'next'},
+        p = {function() trouble.previous({skip_groups = true, jump = true}) end, 'prev'},
       },
-      u = {'<cmd>UndotreeToggle<CR>', 'Undo Tree' },
+      u = {'<cmd>undotreetoggle<cr>', 'undo tree' },
       w = {
         name = 'Windows', -- group name
         -- Window splits
