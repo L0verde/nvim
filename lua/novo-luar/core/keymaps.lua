@@ -1,6 +1,7 @@
--- The only things definded here is <Leader> and Lexplore
--- just incase somthing breaks.
--- For all other keybindings see novo-luar/plugins/which-key.lua.
+-- This file exists for two reasons
+--  1. To define <Leader>
+--  2. Just in case I break something
+-- All other keybindings see novo-luar/plugins/which-key.lua.
 
 vim.g.mapleader = " "
 
