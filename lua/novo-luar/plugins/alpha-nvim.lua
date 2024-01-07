@@ -8,7 +8,7 @@ return{
       [[      .:0          ·       ]],
       [[   .::::00\        |000\    ]],
       [[ .::::::000\       |0000\   ]],
-      [[ |11:::::0000\     |00000\ 000000000000    ,o000000o.        .             .  ==         /\.        /\         ]],
+      [[ |11:::::0000\     |00000\ 000000000000    .:00000000;,      .             .  ==         /\.        /\         ]],
       [[ |111::::00000\    |000000| 0000          .0000     `00.    0\.\         /./            /==\.      /..\        ]],
       [[ |11111::000000\   |000000| 0000         ,00000       `01    0\.\       /./   11       /====\.    /....\       ]],
       [[ |111111:0000000\  |000000| 0000         000000        `01    0\.\     /./    00      /======\.  /......\      ]],
@@ -20,12 +20,11 @@ return{
 
     }
     dashboard.section.buttons.val = {
-      dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-      dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("r", "   Recently used files", ":Telescope oldfiles <CR>"),
-      dashboard.button("t", "   Find text", ":Telescope live_grep <CR>"),
+      dashboard.button("f", "󰈞 Find file", ":Telescope find_files <CR>"),
+      dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
+      dashboard.button("t", "󱎸  Find text", ":Telescope live_grep <CR>"),
       dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua<CR>"),
-      dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+      dashboard.button("q", "󰿅  Quit Neovim", ":qa<CR>"),
     }         
     local handle = io.popen('fortune')
     local fortune = handle:read("*a")

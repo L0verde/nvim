@@ -2,15 +2,16 @@ return {
   'nvim-lua/plenary.nvim', -- lua functions that many plugins use
   -- Undoo Tree
   'mbbill/undotree',
-  -- Fugitive for git
+  --[[ Git ]] 
+  -- Fugitive
   'tpope/vim-fugitive',
   -- Harpoon
   {
-    " ThePrimeagen/harpoon", 
+    "ThePrimeagen/harpoon", 
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" }
   },
-  -- Snippets
+  -- Snippetsshort
   {
     "L3MON4D3/LuaSnip",
     dependencies = { "rafamadriz/friendly-snippets" },

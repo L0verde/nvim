@@ -1,15 +1,14 @@
+-- Telescope
 local builtin = require('telescope.builtin')
--- [[ Harpoon ]] 
-local harpoon = require("harpoon")
+-- Harpoon 
+local harpoon = require('harpoon')
+-- Trouble
+local trouble = require('trouble')
 
 -- REQUIRED
 harpoon:setup()
 -- REQUIRED
 --
-
-vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
-    { desc = "Open harpoon window" })
-
 return {
   'folke/which-key.nvim',
   event = 'VimEnter',
@@ -30,14 +29,14 @@ return {
         -- Telescope
         f =  {builtin.git_files, 'Telescope git_files'},
         p =  {builtin.live_grep, 'Telescope ripgrep'},
-        s =  {vim.cmd.Git, 'Git status'},
+        s =  {builtin.git_status, 'Git status'},
       },
       h = {
         name = 'Harpoon',
         -- Impales some files
         a = {function() harpoon:list():append() end, 'Append'},
         -- View your shish kabob
-        b = {function() harpoon.ui:toggle_quick_menu(harpoon:list()) end , 'Buffer List'},
+        h = {function() harpoon.ui:toggle_quick_menu(harpoon:list()) end , 'Buffer List'},
         -- Jump to specific nodes
         y = {function() harpoon:list():select(1) end, 'Buffer 1'},
         u = {function() harpoon:list():select(2) end, 'Buffer 2'},
@@ -51,6 +50,12 @@ return {
         name = 'Mini Options',
         -- Mini
         f = { '<cmd>lua MiniFiles.open()<CR>', 'MiniFiles' }  -- Corrected line
+      },
+      t = {
+        name = 'Trouble',
+        t = {function() trouble.toggle() end, 'Toggle'},
+        n = {function() trouble.next({skip_groups = true, jump = true}) end, 'Next'},
+        p = {function() trouble.previous({skip_groups = true, jump = true}) end, 'Prev'},
       },
       u = {'<cmd>UndotreeToggle<CR>', 'Undo Tree' },
       w = {
