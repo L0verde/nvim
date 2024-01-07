@@ -30,6 +30,7 @@ return {
         -- Telescope
         f =  {builtin.git_files, 'Telescope git_files'},
         p =  {builtin.live_grep, 'Telescope ripgrep'},
+        s =  {vim.cmd.Git, 'Git status'},
       },
       h = {
         name = 'Harpoon',
