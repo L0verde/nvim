@@ -1,29 +1,37 @@
--- Telescope
-local builtin = require('telescope.builtin')
--- Harpoon 
-local harpoon = require('harpoon')
--- Trouble
-local trouble = require('trouble')
+--Custom Functions/Vars
+local map_options = { noremap = true, silent = true }
 
+local function set_keymap(mode, new, old)
+    vim.keymap.set(mode, new, old, map_options)
+end
+
+--[[Telescope]]
+local builtin = require('telescope.builtin')
+
+--[[Harpoon]]
+local harpoon = require('harpoon')
 -- REQUIRED
 harpoon:setup()
--- REQUIRED
---
+
+--[[Trouble]]
+local trouble = require('trouble')
+
+vim.keymap.set("n", "[d", function() trouble.next({}) end)
+vim.keymap.set("n", "]d", function() trouble.previous({}) end)
+
+
 return {
   'folke/which-key.nvim',
   event = 'VimEnter',
   config = function()
     local wk = require('which-key')
     -- Setup which-key
-    wk.setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
+    wk.setup {}
 
     -- Register your keybindings
     wk.register({
       ['.'] =  {builtin.find_files, 'Telescope find_files'},
+      ['/'] = {':set hlsearch!<CR>', 'Highlighting Toggle' },
       g = {
         name = 'Telescope options',
         -- Telescope
@@ -54,10 +62,20 @@ return {
       t = {
         name = 'Trouble',
         t = {function() trouble.toggle() end, 'Toggle'},
-        n = {function() trouble.next({skip_groups = true, jump = true}) end, 'next'},
-        p = {function() trouble.previous({skip_groups = true, jump = true}) end, 'prev'},
+        n = {function() trouble.next({}) end, 'next'},
+        p = {function() trouble.previous({}) end, 'prev'},
       },
-      u = {'<cmd>undotreetoggle<cr>', 'undo tree' },
+      u = {'<cmd>UndotreeToggle<cr>', 'undo tree' },
+      v = {
+        name = "LSP",
+        w = {s = {function() vim.lsp.buf.workspace_symbol() end, 'Workspace Symbol'},},
+        d = {function() vim.diagnostic.open_float() end, 'Open Diagnostic'},
+        c = {a = {function() vim.lsp.buf.code_action() end, 'Code Action'},},
+        r ={
+          r = {function() vim.lsp.buf.references() end, 'References'},
+          n = {function() vim.lsp.buf.rename() end, 'Rename'},
+        },
+      },
       w = {
         name = 'Windows', -- group name
         -- Window splits

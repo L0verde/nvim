@@ -1,19 +1,24 @@
-return { 
+return {
+  -- Plenary: Module for asynchronous programming using coroutines
   'nvim-lua/plenary.nvim', -- lua functions that many plugins use
-  -- Undoo Tree
+
+  -- Undoo Tree: Visualizes the undo history and makes it 
+  --             easy to browse and switch between different undo branches
   'mbbill/undotree',
-  --[[ Git ]] 
-  -- Fugitive
+
+  --[[ Git ]]
+  -- Fugitive: Vim plugin for Git
   'tpope/vim-fugitive',
-  -- Harpoon
+
+  --[[LaTeX]]
+  --Vimtex
+  'lervag/vimtex',
+
+  -- [[ Quality of Life ]]
+  -- Harpoon: Buffers from Emacs but better
   {
-    "ThePrimeagen/harpoon", 
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" }
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' }
   },
-  -- Snippetsshort
-  {
-    "L3MON4D3/LuaSnip",
-    dependencies = { "rafamadriz/friendly-snippets" },
-  }
 }

@@ -3,7 +3,7 @@ local languages = {
   'bash', 'c_sharp', 'cpp', 'clojure', 'dockerfile',
   'go', 'haskell', 'javascript', 'json', 'julia',
   'latex', 'lua', 'org', 'python', 'ruby',
-  'rust', 'sql', 'swift', 'typescript',
+  'rust', 'sql', 'swift', 'typescript', 'vimdoc',
 }
 return {
   {
