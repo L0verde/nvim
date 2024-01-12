@@ -16,6 +16,10 @@ harpoon:setup()
 --[[Trouble]]
 local trouble = require('trouble')
 
+local term = require("toggleterm")
+
+vim.api.nvim_set_keymap('t', '<C-[>', [[<C-\><C-n>]], {noremap = true, silent = true})
+
 vim.keymap.set("n", "[d", function() trouble.next({}) end)
 vim.keymap.set("n", "]d", function() trouble.previous({}) end)
 
@@ -60,10 +64,11 @@ return {
         f = { '<cmd>lua MiniFiles.open()<CR>', 'MiniFiles' }  -- Corrected line
       },
       t = {
-        name = 'Trouble',
-        t = {function() trouble.toggle() end, 'Toggle'},
-        n = {function() trouble.next({}) end, 'next'},
-        p = {function() trouble.previous({}) end, 'prev'},
+        name = 'Toggle',
+        r = {function() trouble.toggle() end, 'Trouble'},
+        t = {function() vim.cmd('ToggleTerm direction=horizontal size=5') end, 'Term Horizontal'},
+        g = {function() vim.cmd('ToggleTerm direction=float') end, 'Term Float'},
+        s = { ':ToggleTerm direction=horizontal size=', 'horizontal size'},
       },
       u = {'<cmd>UndotreeToggle<cr>', 'undo tree' },
       v = {
