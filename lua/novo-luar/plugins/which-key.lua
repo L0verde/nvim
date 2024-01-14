@@ -15,15 +15,45 @@ harpoon:setup()
 
 --[[Trouble]]
 local trouble = require('trouble')
-
-local term = require("toggleterm")
-
-vim.api.nvim_set_keymap('t', '<C-[>', [[<C-\><C-n>]], {noremap = true, silent = true})
-
-vim.keymap.set("n", "[d", function() trouble.next({}) end)
-vim.keymap.set("n", "]d", function() trouble.previous({}) end)
+set_keymap("n", "[d", function() trouble.next({}) end)
+set_keymap("n", "]d", function() trouble.previous({}) end)
 
 
+--[[ToggleTerm]]
+require("toggleterm")
+set_keymap('t', '<C-[>', [[<C-\><C-n>]])
+
+--[[Snippets]]
+-- Expand snippets in insert mode with Tab
+local ls = require("luasnip")
+
+set_keymap('i', '<Tab>',
+  function()
+    if ls.expandable() then
+      return vim.fn["luasnip#expand_snippet"]()
+    else
+      return "<Tab>"
+    end
+  end
+)
+
+-- Expand snippet in insert mode
+set_keymap('i', '<C-K>', function() ls.expand() end)
+
+-- Jump forward through tabstops in insert and select mode
+set_keymap({'i', 's'}, '<C-L>', function() ls.jump(1) end)
+
+-- Jump backward through tabstops in insert and select mode
+set_keymap({'i', 's'}, '<C-J>', function() ls.jump(-1) end)
+
+-- Change snippet choice in insert and select mode
+set_keymap({'i', 's'}, '<C-E>', function()
+    if ls.choice_active() then
+        ls.change_choice(1)
+    end
+end)
+
+--[[Which-Key Setup]]
 return {
   'folke/which-key.nvim',
   event = 'VimEnter',
