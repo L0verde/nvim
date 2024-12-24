@@ -33,7 +33,6 @@ return{
       ensure_installed = {
         --[[ General Purpose ]]
         'clangd', 'omnisharp', --[[C family]]
-        'hls', --Haskell
         'lua_ls', --Lua
         'rust_analyzer', --Rust
 
@@ -46,12 +45,16 @@ return{
         'julials', --Julia
         'pyright', --Python
 
+        --[[ Data base ]]
+        'sqls', -- sql
+
         --[[ DevOps]]
         'dockerls', --Docker
 
         --[[ Markup/Markdown ]]
         'texlab', --Latex
         'html',
+
       },
       handlers = {
         -- The first entry (without a key) will be the default handler
@@ -76,6 +79,23 @@ return{
             }
           }
         end,
+        ['sqls'] = function()
+          local lspconfig = require('lspconfig')
+          lspconfig.sqls.setup {
+            capabilities = capabilities,
+            settings = {
+              sqls = {
+                connections = {
+                  {
+                    driver = "postgresql",
+                    dataSourceName = "host=localhost port=5432 user=jake dbname=suitcase password=brazil sslmode=disable"
+                  }
+                }
+              }
+            }
+          }
+        end,
+
       }
     })
 

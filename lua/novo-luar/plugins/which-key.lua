@@ -21,7 +21,9 @@ set_keymap("n", "]d", function() trouble.previous({}) end)
 
 --[[ToggleTerm]]
 require("toggleterm")
-set_keymap('t', '<C-[>', [[<C-\><C-n>]])
+set_keymap('t', '<C-[>', [[<C-\><C-N>]])
+-- Function to set terminal keymaps
+set_keymap('t', '<C-c>', '<C-\\><C-n><C-c>')
 
 --[[Snippets]]
 -- Expand snippets in insert mode with Tab
@@ -60,7 +62,14 @@ return {
   config = function()
     local wk = require('which-key')
     -- Setup which-key
-    wk.setup {}
+    wk.setup {
+        icons = {
+        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+        separator = "󱁐", -- symbol used between a key and its label
+        group = "+", -- symbol prepended to a group
+      },
+
+    }
 
     -- Register your keybindings
     wk.register({
@@ -98,7 +107,7 @@ return {
         r = {function() trouble.toggle() end, 'Trouble'},
         t = {function() vim.cmd('ToggleTerm direction=horizontal size=5') end, 'Term Horizontal'},
         g = {function() vim.cmd('ToggleTerm direction=float') end, 'Term Float'},
-        s = { ':ToggleTerm direction=horizontal size=', 'horizontal size'},
+        n = { ':ToggleTerm direction=horizontal size=', 'horizontal size'},
       },
       u = {'<cmd>UndotreeToggle<cr>', 'undo tree' },
       v = {
