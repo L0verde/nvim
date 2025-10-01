@@ -29,15 +29,18 @@ set_keymap('t', '<C-c>', '<C-\\><C-n><C-c>')
 -- Expand snippets in insert mode with Tab
 local ls = require("luasnip")
 
-set_keymap('i', '<Tab>',
-  function()
-    if ls.expandable() then
-      return vim.fn["luasnip#expand_snippet"]()
-    else
-      return "<Tab>"
-    end
+vim.keymap.set('i', '<Tab>', function()
+  local ls = require("luasnip")
+  if ls.expandable() then
+    return vim.fn["luasnip#expand_snippet"]()
+  else
+    local n = vim.bo.softtabstop
+    if n == 0 then n = vim.bo.shiftwidth end
+    if n == 0 then n = 2 end
+    return string.rep(" ", n)
   end
-)
+end, { noremap = true, expr = true, silent = true })
+
 
 -- Expand snippet in insert mode
 set_keymap('i', '<C-K>', function() ls.expand() end)

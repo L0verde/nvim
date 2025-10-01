@@ -11,6 +11,11 @@ local map_options = { noremap = true, silent = true }
 local function set_keymap(mode, new, old)
     vim.keymap.set(mode, new, old, map_options)
 end
+--[[ Tab ]]
+-- Cycle buffers with Tab/Shift-Tab
+set_keymap("n", "<Tab>", ":bnext<CR>")
+set_keymap("n", "<S-Tab>", ":bprev<CR>")
+
 --[[ Explore ]]
 -- Leaving this just incase something breaks...
 set_keymap('n', '<leader>dc', ':30Lexplore %:p:h<CR>') -- current directory
